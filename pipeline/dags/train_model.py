@@ -16,7 +16,7 @@ from sklearn.preprocessing import LabelBinarizer
 
 
 # NOTE: Normally you would put this in a config file
-MODEL_OUTPUT_PATH = '/Users/thomashuijskens/code/production-tools/models/example.joblib'
+MODEL_OUTPUT_PATH = "models/example.joblib"
 
 
 def get_mnist_data():
@@ -77,25 +77,28 @@ def predict_samples(model_path, **kwargs):
 
 model_output_path = MODEL_OUTPUT_PATH
 default_args = {
-    'owner': 'me',
-    'start_date': dt.datetime(2017, 6, 1),
-    'retries': 1,
-    'retry_delay': dt.timedelta(minutes=5),
+    "owner": "me",
+    "start_date": dt.datetime(2017, 6, 1),
+    "retries": 1,
+    "retry_delay": dt.timedelta(minutes=5),
 }
 
-with DAG('dummy_ml_pipeline',
-         default_args=default_args,
-         schedule_interval='0 * * * *',
-         ) as dag:
+with DAG(
+    "dummy_ml_pipeline", default_args=default_args, schedule_interval="0 * * * *"
+) as dag:
 
-    train_model = PythonOperator(task_id='train_model',
-                                 provide_context=True,
-                                 op_kwargs={'model_path': model_output_path},
-                                 python_callable=fit_estimator)
+    train_model = PythonOperator(
+        task_id="train_model",
+        provide_context=True,
+        op_kwargs={"model_path": model_output_path},
+        python_callable=fit_estimator,
+    )
 
-    predict_data = PythonOperator(task_id='predict_data',
-                                  provide_context=True,
-                                  op_kwargs={'model_path': model_output_path},
-                                  python_callable=predict_samples)
+    predict_data = PythonOperator(
+        task_id="predict_data",
+        provide_context=True,
+        op_kwargs={"model_path": model_output_path},
+        python_callable=predict_samples,
+    )
 
 train_model.set_downstream(predict_data)
