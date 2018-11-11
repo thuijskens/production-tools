@@ -20,6 +20,7 @@ jobs:
           name: Install requirements
           command: |
             . venv/bin/activate
+            export SLUGIFY_USES_TEXT_UNIDECODE=yes
             pip install -r ${REQUIREMENTS} -U
        - run:
           name: Run tests
