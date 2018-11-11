@@ -23,7 +23,7 @@ However, I have made some minor changes:
 
 ## Circle CI
 
-[Circle CI](https://circleci.com/)is used for continuous integration. All you need to use Circle CI in your repository is a `circle.yml` file, and an account on [circleci.com](https://circleci.com/). You can connect that account with your GitHub account, and Circle CI will then scan your repositories and tell you for which ones it can enable automatic builds. 
+[Circle CI](https://circleci.com/)is used for continuous integration. All you need to use Circle CI in your repository is a `config.yml` file in the `.circleci` directory, and an account on [circleci.com](https://circleci.com/). You can connect that account with your GitHub account, and Circle CI will then scan your repositories and tell you for which ones it can enable automatic builds. 
 
 In this repository, we only use it to run the unit tests every time a pull request is opened. However, you can customize this so that you can execute more tasks when a PR is submitted. For example, you could add:
 
