@@ -26,4 +26,4 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            PYTHONPATH="$$(pwd):$$PYTHONPATH" python -m python -m pytest pipeline/tests/model_tests.py
+            PYTHONPATH="$$(pwd):$$PYTHONPATH" python -m pytest pipeline/tests/model_tests.py
