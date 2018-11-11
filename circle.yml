@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+     docker:
+       - image: circleci/python:3.6.1
+     environment:
+       - USERNAME: thuijskens
+       - PYTHON_VERSION: 3
+       - REQUIREMENTS: requirements.txt
+
+     steps:
+       - checkout
+       - run:
+          name: Install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -U "pip>=18.0, <19.0" "setuptools>=38.0, <39.0" wheel
+       - run:
+          name: Install requirements
+          command: |
+            . venv/bin/activate
+            pip install -r ${REQUIREMENTS} -U
+       - run:
+          name: Run tests
+          command: |
+            . venv/bin/activate
+            PYTHONPATH="$$(pwd):$$PYTHONPATH" python -m pytest pipeline/tests
