@@ -55,7 +55,7 @@ In this repository, we only use Circle CI to run the unit tests every time a pul
 - Installing the repository if it is meant to be shipped as a Python package. 
 - Execute data pipelines that are part of the DAGs in the codebase (integration tests).
 
-Check out the [Cirlce CI website](https://circleci.com/docs/2.0/tutorials/) for an in-depth tutorial on how to configure Circle CI workflows.
+Check out the [Circle CI website](https://circleci.com/docs/2.0/tutorials/) for an in-depth tutorial on how to configure Circle CI workflows.
 
 ## Black as a pre-commit linter
 
